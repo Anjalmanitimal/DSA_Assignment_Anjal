@@ -1,4 +1,4 @@
-import java.util.Arrays;
+//import java.util.Arrays;
 
 public class KthSmallestInvestment {
     public static int kthSmallestProduct(int[] returns1, int[] returns2, int k) {

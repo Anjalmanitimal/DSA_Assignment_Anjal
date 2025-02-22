@@ -1,29 +1,21 @@
 import java.util.*;
 
 public class MinCostToConnectDevices {
-
-    // Function to find the minimum total cost to connect all devices
     public static int minCostToConnectDevices(int n, int[] modules, int[][] connections) {
         // Create a list to store all edges
         List<int[]> edges = new ArrayList<>();
-
-        // Add edges for direct connections between devices
         for (int[] connection : connections) {
             int device1 = connection[0];
             int device2 = connection[1];
             int cost = connection[2];
             edges.add(new int[]{device1, device2, cost});
         }
-
-        // Add edges for communication module installation (virtual node n+1)
         for (int i = 0; i < n; i++) {
             edges.add(new int[]{i + 1, n + 1, modules[i]});
         }
 
         // Sort edges by cost
         edges.sort((a, b) -> Integer.compare(a[2], b[2]));
-
-        // Initialize Union-Find data structure
         int[] parent = new int[n + 2]; // Devices are numbered from 1 to n, virtual node is n+1
         for (int i = 1; i <= n + 1; i++) {
             parent[i] = i;
