@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,7 +67,6 @@ public class TetrisGame extends JPanel implements ActionListener, KeyListener {
             if (board.canPlaceBlock(currentBlock, currentBlock.getX(), currentBlock.getY() + 1)) {
                 currentBlock.setY(currentBlock.getY() + 1);
             } else {
-                // Place the block on the board
                 board.placeBlock(currentBlock);
                 // Check for completed rows
                 int rowsCleared = board.clearRows();
@@ -83,21 +83,13 @@ public class TetrisGame extends JPanel implements ActionListener, KeyListener {
             repaint(); // Redraw the game board
         }
     }
-
-    // Render the game board and preview
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        // Draw the playing area background (dark gray)
         g.setColor(new Color(30, 30, 30)); // Dark gray
         g.fillRect(0, 0, BOARD_WIDTH * TILE_SIZE, BOARD_HEIGHT * TILE_SIZE);
-
-        // Draw the score/preview area background (black)
         g.setColor(Color.BLACK);
         g.fillRect(BOARD_WIDTH * TILE_SIZE, 0, (PREVIEW_WIDTH + 2) * TILE_SIZE, BOARD_HEIGHT * TILE_SIZE);
-
-        // Draw the game board
         int[][] boardState = board.getBoard();
         for (int i = 0; i < BOARD_HEIGHT; i++) {
             for (int j = 0; j < BOARD_WIDTH; j++) {
@@ -107,8 +99,6 @@ public class TetrisGame extends JPanel implements ActionListener, KeyListener {
                 }
             }
         }
-
-        // Draw the current block
         boolean[][] shape = currentBlock.getShape();
         int x = currentBlock.getX();
         int y = currentBlock.getY();
