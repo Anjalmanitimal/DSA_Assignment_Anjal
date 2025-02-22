@@ -1,6 +1,4 @@
 public class ClosestPoints {
-
-    // Function to find the lexicographically smallest pair of closest points
     public static int[] closestPoints(int[] x_coords, int[] y_coords) {
         int n = x_coords.length;
         int minDistance = Integer.MAX_VALUE;
@@ -10,11 +8,7 @@ public class ClosestPoints {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (i == j) continue; // Skip the same point
-
-                // Calculate Manhattan distance
                 int distance = Math.abs(x_coords[i] - x_coords[j]) + Math.abs(y_coords[i] - y_coords[j]);
-
-                // Update the result if a smaller distance is found or if the distance is the same but the pair is lexicographically smaller
                 if (distance < minDistance || (distance == minDistance && (i < result[0] || (i == result[0] && j < result[1])))) {
                     minDistance = distance;
                     result[0] = i;
@@ -26,7 +20,6 @@ public class ClosestPoints {
         return result;
     }
 
-    // Main function to test the solution
     public static void main(String[] args) {
         int[] x_coords = {1, 2, 3, 2, 4};
         int[] y_coords = {2, 3, 1, 2, 3};
